@@ -29,7 +29,7 @@
       <section>
         <div id="title">
           <h1>A new home for ASCIIMathML</h1>
-          <p>The markdown for MathML</p>
+          <p>Translating ASCII math notation to MathML and graphics</p>
           <hr>
           <span class="credits left">Project maintained by <a href="https://github.com/asciimath">asciimath</a></span>
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
@@ -38,34 +38,55 @@
         <h3>
 <a name="welcome-to-asciimathml" class="anchor" href="#welcome-to-asciimathml"><span class="octicon octicon-link"></span></a>Welcome to ASCIIMathML</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Would you like to easily produce good-looking math formulas on webpages using a simple calculator-style syntax and your own ASCII or HTML editor? Here is a free multi-platform solution (and if you prefer it, LaTeX-style formulas also work). </p>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="github-repository" class="anchor" href="#github-repository"><span class="octicon octicon-link"></span></a>Github repository</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>ASCIIMathML development is now organized on github at <a href="https://github.com/mathjax/asciimathml">https://github.com/mathjax/asciimathml</a></p>
 
 <h3>
 <a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<ul>
+<li>Peter Jipsen (<a href="https://github.com/jipsen" class="user-mention">@jipsen</a>), creator of ASCIIMathML</li>
+<li>David Lippman (<a href="https://github.com/drlippman" class="user-mention">@drlippman</a>)</li>
+<li>Adrian Sieber (<a href="https://github.com/adius" class="user-mention">@adius</a>)</li>
+</ul><h3>
+<a name="related-projects" class="anchor" href="#related-projects"><span class="octicon octicon-link"></span></a>Related projects</h3>
 
 <h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a name="syntax" class="anchor" href="#syntax"><span class="octicon octicon-link"></span></a>Syntax</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>The main aims of the ASCIIMathML syntax are: </p>
+
+<ol>
+<li>close to standard mathematical notation </li>
+<li>easy to read </li>
+<li>easy to type</li>
+</ol><p>You can use your favorite editor to write HTML pages that use this JavaScript program. If the page is viewed by a browser that does not support MathML or JavaScript, the ASCII formulas are still quite readable. Most users will not have to read the technicalities on this page. If you type</p>
+
+<pre><code>amath x^2 or a_(m n) or a_{m n} or (x+1)/y or sqrtx endamath
+</code></pre>
+
+<p>you pretty much get what you expect: amath x^2 or a_(m n) or a_{m n} or (x+1)/y or sqrtx endamath. The a``math … enda``math tokens are used to start/stop the <strong>new auto-math-recognize mode</strong>. Of course one can still use the \`…\` back-quotes to delimit math formulas explicitly (\\$…\\$ should only be used for LaTeX formulas). The choice of grouping parenthesis is up to you (they don’t have to match either). If the displayed expression can be parsed uniquely without them, they are omitted. Printing the table of constant symbols (below) may be helpful (but is not necessary if you know the LaTeX equivalents).</p>
+
+<p>It is hoped that this simple input format for MathML will further encourage its use on the web. The remainder of this page gives a fairly detailed specification of the ASCII syntax. <strong>The expressions described here correspond to a wellspecified subset of Presentation MathML and behave in a predictable way.</strong></p>
+
+<p>The syntax is very permissive and does not generate syntax errors. This allows mathematically incorrect expressions to be displayed, which is important for teaching purposes. It also causes less frustration when previewing formulas.</p>
+
+<p>The parser uses no operator precedence and only respects the grouping brackets, subscripts, superscript, fractions and (square) roots. This is done for reasons of efficiency and generality. The resulting MathML code can quite easily be processed further to ensure additional syntactic requirements of any particular application.</p>
+
+<p><strong>The grammar:</strong> Here is a definition of the grammar used to parse ASCIIMathML expressions. In the Backus-Naur form given below, the letter on the left of the ::= represents a category of symbols that could be one of the possible sequences of symbols listed on the right. The vertical bar | separates the alternatives.</p>
+
+<pre><code>c ::= [A-z] | numbers | greek letters | other constant symbols (see below)
+u ::= 'sqrt' | 'text' | 'bb' |     other unary symbols for font commands
+b ::= 'frac' | 'root' | 'stackrel' binary symbols
+l ::= ( | [ | { | (: | {:          left brackets
+r ::= ) | ] | } | :) | :}          right brackets
+S ::= c | lEr | uS | bSS | "any"   simple expression
+E ::= SE | S/S |S_S | S^S | S_S^S  expression (fraction, sub-, super-, subsuperscript)
+</code></pre>
       </section>
 
     </div>
