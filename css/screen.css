@@ -10,14 +10,14 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(80, 80, 80);
     background-color: rgb(200, 200, 200);
+    line-height: 1.3;
 }
 
 code {
-    background-color: rgb(220, 220, 220);
+    background-color: rgb(230, 230, 230);
     font-size: 0.9em;
-    padding: 0 0.2em;
-    border-radius: 2px;
-    border: 1px solid rgb(180, 180, 180);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
 }
 
 a {
@@ -25,11 +25,16 @@ a {
 }
 
 mark {
-    background-color: rgb(255, 225, 210);
+    background-color: rgb(255, 230, 220);
+    display: block;
     font-size: 0.9em;
-    padding: 0 0.2em;
-    color: rgb(80, 80, 80);
+    padding: 0.5em;
+    color: rgb(190, 90, 80);
+    border-radius: 4px;
+}
 
+mark a {
+    color: rgb(190, 90, 80);
 }
 
 ol {
