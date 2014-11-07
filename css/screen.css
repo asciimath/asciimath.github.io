@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(80, 80, 80);
+    background-color: rgb(200, 200, 200);
+    line-height: 1.3;
+}
+
+pre {
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+code {
+    background-color: rgb(230, 230, 230);
+    font-size: 0.9em;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    word-break: break-all;
+}
+
+a {
+    color: rgb(80, 100, 230);
+}
+
+mark {
+    background-color: rgb(255, 230, 220);
+    display: block;
+    font-size: 0.9em;
+    padding: 0.5em;
+    color: rgb(190, 90, 80);
+    border-radius: 4px;
+}
+
+mark a {
+    color: rgb(190, 90, 80);
+}
+
+ol {
+    margin-left: 2em;
+}
+
+li {
+    margin-bottom: 1em;
+}
+
+nav {
+    margin-bottom: 2em;
+    padding-top: 1.5em;
+    border-bottom: 2px solid rgb(150, 50, 50);
+    background-color: white;
+    position: relative;
+}
+
+h1 {
+    display: inline-block;
+    margin-right: 5.5em;
+    color: black;
+    font-family: "Quicksand", sans-serif;
+    font-size: 2em;
+    font-weight: 100;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin-bottom: 0.4em;
+    color: rgb(150, 50, 50);
+}
+
+
+h3 {
+    font-size: 1em;
+    margin-bottom: 0.4em;
+}
+
+p {
+    margin-bottom: 0.8em;
+}
+
+section {
+    margin-bottom: 2em;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table td,
+table th {
+    padding: 0.2em 0.4em;
+    border: 1px solid rgb(200, 200, 200);
+}
+
+caption {
+    min-height: 2.5em
+}
+
+article {
+    /*padding-top: 6em;*/
+}
+
+.leftColumn,
+.rightColumn {
+    display: inline-block;
+    width: 45%;
+}
+
+.leftColumn {
+    margin-right: 1em;
+}
+
+.ioArea {
+    font-size: 0.9em;
+    width: 100%;
+    height: 10em;
+    border-radius: 4px;
+    border: 1px solid rgb(200, 200, 200);
+    display: inline-block;
+    white-space: nowrap;
+    padding: 1em 1em;
+    vertical-align: top;
+    resize: none;
+}
+
+#demoSource {
+    font-family: Consolas, Menlo, Monaco, monospace;
+}
+
+#forkMe {
+    display: block;
+    background-image: url(https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png);
+    height: 149px;
+    width: 149px;
+    text-indent: -9999px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+#wrapper {
+    width: 720px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 0 2em 4em 2em;
+    position: relative;
+}
+
+#links {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    bottom: 0.4em;
+}
+
+#links a {
+    text-decoration: none;
+    color: rgb(80, 80, 80);
+    display: inline-block;
+    margin-left: 1em;
+}
+
+#links a:hover {
+    color: rgb(0, 0, 0);
+}
+
+#links a:first-of-type {
+    margin: 0;
+}
+
+#syntax table {
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 1em;
+    margin-bottom: 2em;
+}
+
+#grammar{
+    font-size: 0.75em;
+}
+
+@media (max-width: 720px){
+
+    h1 {
+        display: block;
+        margin-bottom: 1em;
+    }
+
+    .leftColumn,
+    .rightColumn {
+        display: block;
+        width: 100%;
+    }
+
+    #links {
+        position: static;
+    }
+
+    #wrapper {
+        width: 100%;
+    }
+}
