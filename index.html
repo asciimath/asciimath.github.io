@@ -3,6 +3,21 @@
 <head>
 	<meta charset="UTF-8">
   	<title>AsciiMath</title>
+      	<script>
+      		window.MathJax = {
+              AuthorInit: function() {
+                MathJax.Hub.Register.StartupHook("End", function() {
+                  MathJax.Hub.processSectionDelay = 0;
+                  var demoSource = document.getElementById('demoSource');
+                  var demoRendering = document.getElementById('demoRendering');
+                  var math = MathJax.Hub.getAllJax("demoRendering")[0];
+                  demoSource.addEventListener('input', function() {
+                    MathJax.Hub.Queue(["Text", math, demoSource.value]);
+                  });
+                });
+              }
+            };
+      	</script>
         <script async
 	      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full.js">
         </script>
@@ -849,7 +864,6 @@ E ::= SE | S/S | S_S | S^S | S_S^S expression (fraction, sub-, super-, subsupers
 </article>
 </div>
 
-<script src="js/index.js"></script>
 
 </body>
 </html>
