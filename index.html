@@ -5,6 +5,9 @@
   	<title>AsciiMath</title>
       	<script>
       		window.MathJax = {
+      				"CHTML-preview": {
+      					disabled: true
+      				},
               AuthorInit: function() {
                 MathJax.Hub.Register.StartupHook("End", function() {
                   MathJax.Hub.processSectionDelay = 0;
