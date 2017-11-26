@@ -5,6 +5,9 @@
 	<title>AsciiMath</title>
 	<script>
 		window.MathJax = {
+				"fast-preview": {
+       					disabled: true
+				},
 				AuthorInit: function() {
 					MathJax.Hub.Register.StartupHook('End', function() {
 						MathJax.Hub.processSectionDelay = 0
@@ -19,7 +22,7 @@
 			}
 	</script>
 	<script async
-	src=https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full.js>
+	src=https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=AM_HTMLorMML-full.js>
 	</script>
 
 	<link
