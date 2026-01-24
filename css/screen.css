@@ -18,12 +18,12 @@ pre {
     white-space: pre-wrap;
 }
 
-code {
+code, pre.code {
     background-color: rgb(230, 230, 230);
     font-size: 0.9em;
     padding: 0.2em 0.4em;
     border-radius: 4px;
-    word-break: break-all;
+    word-break: normal;
 }
 
 a {

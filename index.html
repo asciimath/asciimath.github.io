@@ -79,7 +79,7 @@
 	</div>
 
 	<p>This page is being rendered using MathJax 2. 
-		<a href="index-mathml.html">See is using browser-based MathML rendering</a>.
+		<a href="index-mathml.html">See it using browser-based MathML rendering</a>.
 	</p>
 </section>
 
@@ -97,9 +97,16 @@
 
 			<p>For MathJax 4, you can do a basic configuration using:</p>
 			<p>
-				<code>&lt;script&gt;MathJax = {loader: {load: ['input/asciimath', 'output/chtml', 'ui/menu']}};&lt;/script&gt;</code><br/>
-				<code>&lt;script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/startup.js"&gt;&lt;/script&gt;</code>
-
+<pre class="code">
+&lt;script&gt;
+MathJax = {
+  loader: {
+    load: ['input/asciimath', 'output/chtml', 'ui/menu']
+  }
+};
+&lt;/script&gt;	
+&lt;script src="https://cdn.jsdelivr.net/npm/mathjax@4/startup.js" defer&gt;&lt;/script&gt;
+</pre>
 			</p>
 			<p>If you prefer to use MathJax 2, get started by loading the default AsciiMath configuration:</p>
 
