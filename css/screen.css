@@ -110,6 +110,7 @@ article {
 .rightColumn {
     display: inline-block;
     width: 45%;
+    margin-bottom: 0.8em;
 }
 
 .leftColumn {
@@ -127,6 +128,9 @@ article {
     padding: 1em 1em;
     vertical-align: top;
     resize: none;
+}
+textarea.ioArea {
+    white-space: normal;
 }
 
 #demoSource {

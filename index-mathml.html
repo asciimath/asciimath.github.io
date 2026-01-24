@@ -4,25 +4,15 @@
 	<meta charset=UTF-8>
 	<title>AsciiMath</title>
 	<script>
-		window.MathJax = {
-				"fast-preview": {
-       					disabled: true
-				},
-				AuthorInit: function() {
-					MathJax.Hub.Register.StartupHook('End', function() {
-						MathJax.Hub.processSectionDelay = 0
-						var demoSource = document.getElementById('demoSource')
-						var demoRendering = document.getElementById('demoRendering')
-						var math = MathJax.Hub.getAllJax('demoRendering')[0]
-						demoSource.addEventListener('input', function() {
-							MathJax.Hub.Queue(['Text', math, demoSource.value])
-						})
-					})
-				}
-			}
+	document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('demoSource').addEventListener('input', function () {
+            var demoSource = document.getElementById('demoSource');
+            var demoRendering = document.getElementById('demoRendering');
+            demoRendering.replaceChildren(asciimath.parseMath(demoSource.value));
+        });
+    });
 	</script>
-	<script async
-	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML-full">
+	<script src="js/ASCIIMathML.js"></script>
 	</script>
 
 	<link
@@ -78,15 +68,17 @@
 		</div>
 	</div>
 
-	<p>This page is being rendered using MathJax 2. 
-		<a href="index-mathml.html">See is using browser-based MathML rendering</a>.
-	</p>
+    <p>This page is being rendered using the AsciiMathML script, 
+        generating MathML rendered directly by the browser.
+        <a href="index.html">See is using MathJax 2</a>.
+    </p>
 </section>
 
 <section id="gettingStarted">
 	<h2>Getting Started</h2>
 
-	<p>In order to get started you have two options:</p>
+	<p>In order to get started you have two options.
+    </p>
 
 	<ol>
 		<li>
@@ -418,7 +410,7 @@
 	<tr>
 		<td>/_\</td>
 		<td>triangle</td>
-		<td>`/_\\`</td>
+		<td>`/_\\ `</td>
 	</tr>
 	<tr>
 		<td>diamond</td>
