@@ -4,36 +4,16 @@
 	<meta charset=UTF-8>
 	<title>AsciiMath</title>
 	<script>
-		MathJax = {
-			loader: {
-				load: ['input/asciimath', 'output/chtml', 'ui/menu']
-			},
-			startup: {
-				ready() {
-					MathJax.startup.defaultReady();
-					renderMath(); // initial render
-					document.getElementById('demoSource').addEventListener('input', () => {
-						clearTimeout(debounceTimer);
-						debounceTimer = setTimeout(renderMath, 100); // debounce 100ms
-					});
-				}
-			}
-		};
-		let debounceTimer;
-
-		async function renderMath() {
-			const raw = document.getElementById('demoSource').value.trim();
-			const output = document.getElementById('demoRendering');
-
-			if (!raw) { output.innerHTML = ''; return; }
-
-			output.innerHTML = '`' + raw + '`';
-
-			// Tell MathJax to typeset only this element
-			await MathJax.typesetPromise([output]);
-		}
-	</script>	
-	<script src="https://cdn.jsdelivr.net/npm/mathjax@4/startup.js" defer></script>
+	document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('demoSource').addEventListener('input', function () {
+            var demoSource = document.getElementById('demoSource');
+            var demoRendering = document.getElementById('demoRendering');
+            demoRendering.replaceChildren(asciimath.parseMath(demoSource.value));
+        });
+    });
+	</script>
+	<script src="js/ASCIIMathML.js"></script>
+	</script>
 
 	<link
 		rel=icon
@@ -88,15 +68,17 @@
 		</div>
 	</div>
 
-	<p>This page is being rendered using MathJax 4. 
-		<a href="index-mathml.html">See it using browser-based MathML rendering</a>.
-	</p>
+    <p>This page is being rendered using the AsciiMathML script, 
+        generating MathML rendered directly by the browser.
+        <a href="index.html">See it using MathJax 4</a>.
+    </p>
 </section>
 
 <section id="gettingStarted">
 	<h2>Getting Started</h2>
 
-	<p>In order to get started you have two options:</p>
+	<p>In order to get started you have two options.
+    </p>
 
 	<ol>
 		<li>
@@ -132,6 +114,8 @@ MathJax = {
 				rendered as a math formula. The math delimiters can also be customized.
 				Check out the <a href=https://mathjax.org/>MathJax</a> website for more
 				information!</p>
+
+			<p>Note that some symbols added more recently may not be available in MathJax.</p>
 		</li>
 		<li>
 			<p>Load the AsciiMath javascript file
@@ -247,6 +231,11 @@ MathJax = {
 		<td>`o+`</td>
 	</tr>
 	<tr>
+		<td>o-</td>
+		<td>ominus</td>
+		<td>`o-`</td>
+	</tr>
+	<tr>
 		<td>ox</td>
 		<td>otimes</td>
 		<td>`ox`</td>
@@ -305,6 +294,16 @@ MathJax = {
 		<td>uuu</td>
 		<td>bigcup</td>
 		<td>`uuu`</td>
+	</tr>
+	<tr>
+		<td>dag</td>
+		<td>dagger</td>
+		<td>`dag`</td>
+	</tr>
+	<tr>
+		<td>ddag</td>
+		<td>ddagger</td>
+		<td>`ddag`</td>
 	</tr>
 	</tbody>
 </table>
@@ -367,6 +366,11 @@ MathJax = {
 		<td>`+-`</td>
 	</tr>
 	<tr>
+		<td>-+</td>
+		<td>mp</td>
+		<td>`-+`</td>
+	</tr>
+	<tr>
 		<td>O/</td>
 		<td>emptyset</td>
 		<td>`O/`</td>
@@ -381,7 +385,11 @@ MathJax = {
 		<td></td>
 		<td>`aleph`</td>
 	</tr>
-	
+	<tr>
+		<td>hbar</td>
+		<td></td>
+		<td>`hbar`</td>
+	</tr>
 	<tr>
 		<td>:.</td>
 		<td>therefore</td>
@@ -435,7 +443,7 @@ MathJax = {
 	<tr>
 		<td>/_\</td>
 		<td>triangle</td>
-		<td>`/_\\`</td>
+		<td>`/_\\ `</td>
 	</tr>
 	<tr>
 		<td>diamond</td>
@@ -586,9 +594,19 @@ MathJax = {
 		<td>`sub`</td>
 	</tr>
 	<tr>
+		<td>!sub</td>
+		<td>notsubset</td>
+		<td>`!sub`</td>
+	</tr>
+	<tr>
 		<td>sup</td>
 		<td>supset</td>
 		<td>`sup`</td>
+	</tr>
+	<tr>
+		<td>!sup</td>
+		<td>notsupset</td>
+		<td>`!sup`</td>
 	</tr>
 	<tr>
 		<td>sube</td>
@@ -596,14 +614,29 @@ MathJax = {
 		<td>`sube`</td>
 	</tr>
 	<tr>
+		<td>!sube</td>
+		<td>notsubseteq</td>
+		<td>`!sube`</td>
+	</tr>
+	<tr>
 		<td>supe</td>
 		<td>supseteq</td>
 		<td>`supe`</td>
 	</tr>
 	<tr>
+		<td>!supe</td>
+		<td>notsupseteq</td>
+		<td>`!supe`</td>
+	</tr>
+	<tr>
 		<td>-=</td>
 		<td>equiv</td>
 		<td>`-=`</td>
+	</tr>
+	<tr>
+		<td>!-=</td>
+		<td>notequiv</td>
+		<td>`!-=`</td>
 	</tr>
 	<tr>
 		<td>~=</td>
@@ -863,6 +896,16 @@ MathJax = {
 		<td>hArr</td>
 		<td>Leftrightarrow</td>
 		<td>`hArr`</td>
+	</tr>
+	<tr>
+		<td>dArr</td>
+		<td>Downarrow</td>
+		<td>`dArr`</td>
+	</tr>
+	<tr>
+		<td>rightleftharpoons</td>
+		<td></td>
+		<td>`rightleftharpoons`</td>
 	</tr>
 	</tbody>
 </table>
@@ -1137,7 +1180,7 @@ MathJax = {
 <h3>Standard Functions</h3>
 
 <p>sin, cos, tan, sec, csc, cot, 
-arcsin, arccos, arctan, sinh, cosh, tanh, sech, csch, coth, exp, log, ln,
+arcsin, arccos, arctan, arcsec, arccsc, arccot, sinh, cosh, tanh, sech, csch, coth, exp, log, ln,
 det, dim, mod, gcd, lcm, lub, glb, min, max, f, g.</p>
 
 <br/>
