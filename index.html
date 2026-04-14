@@ -9,13 +9,12 @@
 				load: ['input/asciimath', 'output/chtml', 'ui/menu']
 			},
 			startup: {
-				ready() {
-					MathJax.startup.defaultReady();
-					renderMath(); // initial render
+				pageReady() {
 					document.getElementById('demoSource').addEventListener('input', () => {
 						clearTimeout(debounceTimer);
 						debounceTimer = setTimeout(renderMath, 100); // debounce 100ms
 					});
+					return MathJax.startup.defaultPageReady();
 				}
 			}
 		};
@@ -40,7 +39,7 @@
 		href=img/favicon.ico
 		sizes="16x16 32x32 48x48 64x64 128x128"
 		type=image/x-icon>
-	<link href=http://fonts.googleapis.com/css?family=Quicksand
+	<link href="https://fonts.googleapis.com/css?family=Quicksand"
 			rel=stylesheet type=text/css>
 	<link rel=stylesheet href=css/screen.css>
 	<meta name=viewport
