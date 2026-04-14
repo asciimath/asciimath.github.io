@@ -4,26 +4,36 @@
 	<meta charset=UTF-8>
 	<title>AsciiMath</title>
 	<script>
-		window.MathJax = {
-				"fast-preview": {
-       					disabled: true
-				},
-				AuthorInit: function() {
-					MathJax.Hub.Register.StartupHook('End', function() {
-						MathJax.Hub.processSectionDelay = 0
-						var demoSource = document.getElementById('demoSource')
-						var demoRendering = document.getElementById('demoRendering')
-						var math = MathJax.Hub.getAllJax('demoRendering')[0]
-						demoSource.addEventListener('input', function() {
-							MathJax.Hub.Queue(['Text', math, demoSource.value])
-						})
-					})
+		MathJax = {
+			loader: {
+				load: ['input/asciimath', 'output/chtml', 'ui/menu']
+			},
+			startup: {
+				ready() {
+					MathJax.startup.defaultReady();
+					renderMath(); // initial render
+					document.getElementById('demoSource').addEventListener('input', () => {
+						clearTimeout(debounceTimer);
+						debounceTimer = setTimeout(renderMath, 100); // debounce 100ms
+					});
 				}
 			}
-	</script>
-	<script async
-	src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=AM_CHTML-full">
-	</script>
+		};
+		let debounceTimer;
+
+		async function renderMath() {
+			const raw = document.getElementById('demoSource').value.trim();
+			const output = document.getElementById('demoRendering');
+
+			if (!raw) { output.innerHTML = ''; return; }
+
+			output.innerHTML = '`' + raw + '`';
+
+			// Tell MathJax to typeset only this element
+			await MathJax.typesetPromise([output]);
+		}
+	</script>	
+	<script src="https://cdn.jsdelivr.net/npm/mathjax@4/startup.js" defer></script>
 
 	<link
 		rel=icon
@@ -39,7 +49,7 @@
 	</head>
 <body>
 
-<a id="forkMe" href="https://github.com/mathjax/asciimathml">
+<a id="forkMe" href="https://github.com/asciimath/asciimathml">
 	Fork me on GitHub
 </a>
 
@@ -78,7 +88,7 @@
 		</div>
 	</div>
 
-	<p>This page is being rendered using MathJax 2. 
+	<p>This page is being rendered using MathJax 4. 
 		<a href="index-mathml.html">See it using browser-based MathML rendering</a>.
 	</p>
 </section>
